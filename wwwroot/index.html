@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ReportWebsite</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="ReportWebsite.styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script type="text/javascript">
+
+        function videoJumpTo(timestamp) {
+            document.querySelector("video").currentTime = timestamp;
+        }
+
+        function videoGetCurrentTime() {
+            return document.querySelector("video").currentTime;
+        }
+
+        function HighlightCurrentRow() {
+            
+
+            curtime = document.querySelector("video").currentTime;
+
+            if (lasttime != curtime) {
+                var elem = document.getElementsByClassName("table-warning");
+                if (elem[0] != null) {
+                    elem[0].scrollIntoView(false);
+                } else {
+                    var elem2 = document.getElementsByClassName("table-success");
+                    if (elem2[0] != null) {
+                        elem2[0].scrollIntoView(false);
+                    }
+                }
+                
+
+                
+            }
+
+            lasttime = curtime;
+            DotNet.invokeMethodAsync('ReportWebsite', 'TrackCurrentRow', curtime);
+        }
+
+        setInterval(HighlightCurrentRow, 1000);
+
+        lasttime = 0;
+    </script>
+
+</body>
+
+</html>

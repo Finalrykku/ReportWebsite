@@ -1,0 +1,164 @@
+﻿
+
+.video {
+    padding-top: 20px;
+}
+
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #e6e6e6;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+    #sidebar ul li a:hover {
+        color: #7386D5;
+        background: #fff;
+    }
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+    ul.CTAs a {
+        text-align: center;
+        font-size: 0.9em !important;
+        display: block;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+li.Passed {
+    background: hsla(120,100%,50%,0.3);
+    text-align: center;
+    font-size: 1.1em;
+}
+
+li.Failed {
+    background: #fc0000;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.mycheckbox {
+    text-align: center;
+    background: #fff;
+    color: black;
+    line-height: 23px;
+    min-height: 23px;
+}
+
+button {
+    background: #808080;
+}
+
+/* table */
+
+.mytable {
+    overflow-y: scroll;
+    height: 47vh;
+}
+
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+    text-align: center;
+}
+
+
+tbody tr:hover {
+    background: #b2b2b2;
+    color: #000;
+    cursor: pointer;
+}
+
+tr {
+    line-height: 10px;
+    min-height: 10px;
+    height: 10px;
+}
+
+.heighthelper:after {
+    content: "";
+    clear: both;
+    height: 100vh;
+}
+
+body {
+
+}
+
+html {
+    
+}

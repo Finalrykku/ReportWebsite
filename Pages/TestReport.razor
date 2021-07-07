@@ -1,0 +1,104 @@
+﻿@page "/testreport"
+@inject IJSRuntime JS
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Testrun: @_Testrunid</h3>
+            <h4>TC: 10000</h4>
+        </div>
+        <ul class="list-unstyled components">
+            <li class=@passed()>
+                @passed()
+            </li>
+            <br />
+            <li >
+                <div class="mycheckbox">
+
+                    <input type="checkbox" id="mycheckbox" @onclick="() => toggleExpandSteps()">
+                    <label for="mycheckbox">Expand Current Step</label>
+                </div>
+            </li>
+
+        </ul>
+        <ul class="list-unstyled components">
+            <li>
+                <form class="">
+                    <input class="form-control mr-sm-1" type="search" placeholder="TestRunId" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+        <button class="btn btn-outline-success my-2 my-sm-0" @onclick="() => buttonclick()">TestFunktion</button>
+
+    </nav>
+</div>
+<div class="container-fluid heighthelper">
+    <div class="row justify-content-center">
+        <figure class="video " id="video-track-container">
+            <video controls="" crossorigin="anonymous" height="450" id="reportVideo" width="800" poster="https://s3.amazonaws.com/static.nicic.gov/Assets/big-buck-poster.png">
+                <source src="https://s3.amazonaws.com/static.nicic.gov/Assets/big_buck_bunny_640_15mb.mp4" type="video/mp4" />
+                <!--track default="" kind="chapters" label="Locations" onload="displayChapters(this)" src="https://s3.amazonaws.com/static.nicic.gov/Assets/chapters.vtt" srclang="en" /-->
+                <!--track kind="captions" label="English" src="https://s3.amazonaws.com/static.nicic.gov/Assets/captions.vtt" srclang="en" /-->
+                Your browser does not support the video tag.
+            </video>
+        </figure>
+    </div>
+    <div class="row">
+        <div class="col mytable">
+            <table class="table ">
+                <thead>
+                    <tr class="header">
+                        <th class="fit"> Detail</th>
+                        <th class="fit"> Step</th>
+                        <th class="fit"> Timestamp</th>
+                        <th> Description </th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    @foreach (Testlog testlog in highlevelSteps)
+                    {
+                        <tr class="@GetClassRowSteps(testlog)">
+                            <td @onclick="() => ShowRows(testlog)">
+                                +
+                            </td>
+                            <td @onclick="() => VideoJumpTo(testlog.starttime)">
+                                @getIndex(testlog)
+                            </td>
+                            <td @onclick="() => VideoJumpTo(testlog.starttime)">
+                                @testlog.starttime
+                            </td>
+                            <td @onclick="() => VideoJumpTo(testlog.starttime)">
+                                @testlog.description
+                            </td>
+                        </tr>
+                        @if (testlog.ShowActions)
+                        {
+                            foreach(Testlog action in testlog.actions)
+                            {
+                        <tr class="@GetClassRowActions(action)"  @onclick="() => VideoJumpTo(action.starttime)" >
+                            <td>
+                                --->
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                @action.starttime
+                            </td>
+                            <td>
+                                @action.description
+                            </td>
+                        </tr>
+                            }
+
+                            }
+                      }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
